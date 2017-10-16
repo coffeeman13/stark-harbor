@@ -52,7 +52,6 @@ const VALIDATION_TOKEN = process.env.VALIDATION_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN)) {
-  console.error("Missing config values");
   process.exit(1);
 }
 
@@ -620,6 +619,10 @@ console.log("sendCustoMessage "+ messageText);
         addKeywordButtonStep3(recipientId,3);
         break
 
+      case 'GET_STARTED_PAYLOAD' :
+      	sendFirstGreeting(recipientId);
+      	break 
+
 
       default:
          sendJsonMessage(recipientId,messageText);
@@ -719,6 +722,51 @@ function sendLocale(recipientId) {
           "payload":"home"
         }
       ]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendFirstGreeting(recipientId) {
+	var greeting = "Hi! " + firstName + ". Welcome to Rebel.lion! What do you want to do today?"
+
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: 
+    {
+      "attachment": {
+        "type": "template",
+        "payload": {
+         "template_type": "generic",
+          "elements": [
+          {
+            "title": "Rebellion",
+            "subtitle": greeting,               
+            "image_url": "https://image.ibb.co/knc6fb/21767954_1729774173999098_5364905442299951359_n.jpg",
+            "buttons": [
+            {
+              "type": "postback",
+              "title": "How to Join?",
+              "payload": "join"
+            },
+            {
+              "type": "postback",
+              "title": "Rules",
+              "payload": "rules"
+            },
+            {
+              "type": "postback",
+              "title": "Admins",
+              "payload": "admin"
+            }
+            ]
+          }, 
+          ]
+        }
+      }
     }
   };
 
