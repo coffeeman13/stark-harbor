@@ -737,6 +737,7 @@ function sendFirstGreeting(recipientId) {
     },
     message: 
     {
+      "text" : greeting,
       "attachment": {
         "type": "template",
         "payload": {
