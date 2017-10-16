@@ -1258,10 +1258,10 @@ function removePersistentMenu(){
  request({
     url: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: { access_token: PAGE_ACCESS_TOKEN },
-    method: 'POST',
+    method: 'DELETE',
     json:{
         setting_type : "call_to_actions",
-        thread_state : "existing_thread",
+        thread_state : "new_thread",
         call_to_actions:[ ]
     }
 
