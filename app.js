@@ -740,7 +740,6 @@ function sendFirstGreeting(recipientId) {
         "type": "template",
         "payload": {
          "template_type": "generic",
-         "text": greeting,
           "elements": [
           {
             "title": "Rebellion",
