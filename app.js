@@ -754,12 +754,12 @@ function sendFirstGreeting(recipientId) {
             {
               "type": "postback",
               "title": "Rules",
-              "payload": "rules"
+              "payload": "remove menu"
             },
             {
               "type": "postback",
               "title": "Admins",
-              "payload": "admin"
+              "payload": "add menu"
             }
             ]
           }, 
