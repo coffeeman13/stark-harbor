@@ -575,7 +575,7 @@ console.log("sendEnteredMessage "+ messageText);
 
 function sendCustomMessage(recipientId,messageText) {
 
-console.log("sendCustoMessage "+ messageText);
+console.log("sendCustomMessage "+ messageText);
 
     switch (messageText.toLowerCase()) {
 
@@ -619,7 +619,7 @@ console.log("sendCustoMessage "+ messageText);
         addKeywordButtonStep3(recipientId,3);
         break
 
-      case 'GET_STARTED_PAYLOAD' :
+      case 'get_started_payload' :
       	sendFirstGreeting(recipientId);
       	break 
 
