@@ -628,8 +628,11 @@ console.log("sendCustomMessage "+ messageText);
       	break
 
       case 'remove_start' :
-      	removeElement(recipientd, 'start');
-      	break  
+      	removeElement(recipientId, 'start');
+      	break
+
+      case 'add_menu' :
+      	addPersistentMenu();  
 
 
       default:
@@ -1211,7 +1214,7 @@ function addPersistentMenu(){
 "persistent_menu":[
     {
       "locale":"default",
-      "composer_input_disabled":true,
+      "composer_input_disabled":false,
       "call_to_actions":[
         {
           "title":"Home",
@@ -1448,7 +1451,6 @@ function sendKeywordList(recipientId)
 // certificate authority.
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
-  addPersistentMenu();
 });
 
 module.exports = app;
