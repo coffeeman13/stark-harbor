@@ -735,13 +735,12 @@ function sendFirstGreeting(recipientId) {
     recipient: {
       id: recipientId
     },
-    message: 
-    {
-      "text" : greeting,
+    message: {
       "attachment": {
         "type": "template",
         "payload": {
          "template_type": "generic",
+         "text": greeting,
           "elements": [
           {
             "title": "Rebellion",
