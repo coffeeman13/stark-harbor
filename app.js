@@ -755,11 +755,6 @@ function sendFirstGreeting(recipientId) {
             "buttons": [
             {
               "type": "postback",
-              "title": "How to Join?",
-              "payload": "join"
-            },
-            {
-              "type": "postback",
               "title": "Remove Menu",
               "payload": "remove_menu"
             },
@@ -771,7 +766,7 @@ function sendFirstGreeting(recipientId) {
             {
               "type": "postback",
               "title": "Add Menu",
-              "payload": "add menu"
+              "payload": "add_menu"
             }
             ]
           }, 
@@ -1453,6 +1448,7 @@ function sendKeywordList(recipientId)
 // certificate authority.
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
+  addPersistentMenu();
 });
 
 module.exports = app;
