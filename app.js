@@ -623,9 +623,13 @@ console.log("sendCustomMessage "+ messageText);
       	sendFirstGreeting(recipientId);
       	break
 
-      case 'remove menu' :
-      	removePersistentMenu(recipientId);
-      	break 
+      case 'remove_menu' :
+      	removeElement(recipientId, 'menu');
+      	break
+
+      case 'remove_start' :
+      	removeElement(recipientd, 'start');
+      	break  
 
 
       default:
@@ -700,8 +704,7 @@ function sendJoke(recipientId) {
         }
       ]
     }
-  };
-
+  }
   callSendAPI(messageData);
 }
 
@@ -741,7 +744,7 @@ function sendFirstGreeting(recipientId) {
     },
     message: {
       "attachment": {
-        "type": "template",
+        "type": "template"
         "payload": {
          "template_type": "generic",
           "elements": [
@@ -757,12 +760,17 @@ function sendFirstGreeting(recipientId) {
             },
             {
               "type": "postback",
-              "title": "Rules",
-              "payload": "remove menu"
+              "title": "Remove Menu",
+              "payload": "remove_menu"
             },
             {
               "type": "postback",
-              "title": "Admins",
+              "title": "Remove Start",
+              "payload": "remove_start"
+            },
+            {
+              "type": "postback",
+              "title": "Add Menu",
               "payload": "add menu"
             }
             ]
@@ -1177,6 +1185,10 @@ function callGetLocaleAPI(event, handleReceived) {
     });
 }
 
+function addGetStarted(recipientId) {
+
+}
+
 
 function addPersistentMenu(){
  request({
@@ -1258,14 +1270,24 @@ function addPersistentMenu(){
 
 }
 
-function removePersistentMenu(recipientId){
+function removeElement(recipientId, element){
+	var threadState = "";
+	var message = "";
+	if (element == 'menu') {
+		threadState = "existing_thread;"
+		message = "Persistent Menu";
+	} else {
+		threadState = "new_thread";
+		message = "Get Started Button";
+	}
+
  request({
     url: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: { access_token: PAGE_ACCESS_TOKEN },
     method: 'DELETE',
     json:{
         setting_type : "call_to_actions",
-        thread_state : "new_thread",
+        thread_state : threadState,
         call_to_actions:[ ]
     }
 
@@ -1283,7 +1305,7 @@ function removePersistentMenu(recipientId){
  		id: recipientId
  	},
  	message: {
- 		text : "Menu has been removed!"
+ 		text : message + " has been removed!"
  	}
  }
 
