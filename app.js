@@ -302,7 +302,7 @@ function handleReceivedMessage(event) {
         break        
 
       case 'remove menu':
-        removePersistentMenu();
+        //removePersistentMenu();
         break        
 
       case 'stop':  // Stop the Bot from responding if the admin sends this messages
@@ -621,6 +621,10 @@ console.log("sendCustomMessage "+ messageText);
 
       case 'get_started_payload' :
       	sendFirstGreeting(recipientId);
+      	break
+
+      case 'remove menu' :
+      	removePersistentMenu(recipientId);
       	break 
 
 
@@ -1254,7 +1258,7 @@ function addPersistentMenu(){
 
 }
 
-function removePersistentMenu(){
+function removePersistentMenu(recipientId){
  request({
     url: 'https://graph.facebook.com/v2.6/me/thread_settings',
     qs: { access_token: PAGE_ACCESS_TOKEN },
@@ -1273,6 +1277,18 @@ function removePersistentMenu(){
         console.log('Error: ', response.body.error)
     }
 })
+
+ var messageData = {
+ 	recipient : {
+ 		id: recipientId
+ 	},
+ 	message: {
+ 		text : "Menu has been removed!"
+ 	}
+ }
+
+ callSendAPI(messageData);
+
 }
 
 function addKeywordStep1(recipientId)
