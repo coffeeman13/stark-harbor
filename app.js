@@ -1286,7 +1286,6 @@ function removeElement(recipientId, element){
     json:{
         setting_type : "call_to_actions",
         thread_state : threadState,
-        call_to_actions:[ ]
     }
 
 }, function(error, response, body) {
